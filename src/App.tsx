@@ -7242,11 +7242,11 @@ return (
      
 
      {/* Header da Timeline / Ruler */}
-  <div className="flex bg-zinc-900/50" style = {{width: 300 * pixelsPerSecond }}>
+  <div className="flex bg-zinc-900/50" style = {{width: (totalDuration+60) * pixelsPerSecond }}>
     <div className="w-50 shrink-0 border-r border-white/5" /> 
     
     <div 
-      className="flex-1 relative h-8 border-b border-white/5 cursor-pointer overflow-hidden"
+      className="flex-1 relative h-8 border-b border-white/5 cursor-pointer"
       onClick={(e) => {
 
         const rect = e.currentTarget.getBoundingClientRect();
@@ -7269,8 +7269,8 @@ return (
         const niceIntervals = [0.1, 0.25, 0.5, 1, 2, 5, 10, 15, 30, 60, 120, 300, 600];
         const tickInterval = niceIntervals.find(v => v >= rawInterval) ?? 600;
         const labelEvery = tickInterval < 1 ? 10 : tickInterval < 10 ? 5 : 2;
-        const totalDuration = 750;
-        const tickCount = Math.ceil(totalDuration / tickInterval) + 1;
+        const tDuration = 36000
+        const tickCount = Math.ceil(tDuration / tickInterval) + 1;
 
         return [...Array(tickCount)].map((_, i) => {
           const timeInSeconds = i * tickInterval;
